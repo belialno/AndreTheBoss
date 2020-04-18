@@ -1,0 +1,123 @@
+<characters>
+	<monsters>
+		<boss>
+			<level value="1">
+					<attack>
+						6
+					</attack>
+					<defense>
+						4
+					</defense>
+					<life>
+						20
+					</life>
+					<dexterity>
+						3
+					</dexterity>
+					<attackRange>
+						2
+					</attackRange>
+			</level>
+		</boss>
+	
+		<zombie>
+			<level value="1">
+				<attack>
+					5
+				</attack>
+				<defense>
+					3
+				</defense>
+				<life>
+					15
+				</life>
+				<dexterity>
+					2
+				</dexterity>
+				<attackRange>
+					1
+				</attackRange>
+			</level>
+		</zombie>
+		
+		<elf>
+			<level value="1">
+				<attack>
+					4
+				</attack>
+				<defense>
+					2
+				</defense>
+				<life>
+					12
+				</life>
+				<dexterity>
+					4
+				</dexterity>
+				<attackRange>
+					2
+				</attackRange>
+			</level>
+		</elf>
+	</monsters>
+
+	<enemies>
+		<wanderingSwordman>
+			<level value="1">
+				<attack>
+					5
+				</attack>
+				<defense>
+					3
+				</defense>
+				<life>
+					12
+				</life>
+				<dexterity>
+					2
+				</dexterity>
+				<attackRange>
+					1
+				</attackRange>
+			</level>
+		</wanderingSwordman>
+		<magicApprentice>
+			<level value="1">
+				<attack>
+					6
+				</attack>
+				<defense>
+					2
+				</defense>
+				<life>
+					10
+				</life>
+				<dexterity>
+					3
+				</dexterity>
+				<attackRange>
+					2
+				</attackRange>
+			</level>
+		</magicApprentice>
+		<thief>
+			<level value="1">
+				<attack>
+					4
+				</attack>
+				<defense>
+					2
+				</defense>
+				<life>
+					10
+				</life>
+				<dexterity>
+					4
+				</dexterity>
+				<attackRange>
+					1
+				</attackRange>
+			</level>
+		</thief>
+	</enemies>
+</characters>
