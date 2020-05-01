@@ -11,9 +11,14 @@ public class CharacterReader
     {
         public int attack;
         public int defense;
-        public int life; 
+        public int HP; 
         public int dexterity; 
         public int attackRange;
+
+        public override string ToString()
+        {
+            return "Attack: " + attack + " defense: " + defense + " HP: " + HP + " dexterity: " + dexterity + " attackRange: " + attackRange;
+        }
     };
 
     public void ReadFile()
@@ -41,10 +46,32 @@ public class CharacterReader
 
         data.attack = int.Parse(node["attack"].InnerXml);
         data.defense = int.Parse(node["defense"].InnerXml);
-        data.life = int.Parse(node["life"].InnerXml);
+        data.HP = int.Parse(node["hp"].InnerXml);
         data.dexterity = int.Parse(node["dexterity"].InnerXml);
         data.attackRange = int.Parse(node["attackRange"].InnerXml);
         return data;
+    }
+
+    public bool InitPawnData(ref Pawn pawn, PawnType pawnType, int characterTypeEnum, int level)
+    {
+        if (pawn == null)
+            return false;
+
+        if(pawnType == PawnType.Enemy)
+        {
+            Enemy enemy = (Enemy)pawn;
+            CharacterData data = GetCharacterData(pawnType, ((EnemyType)characterTypeEnum).ToString(), level);
+            enemy.InitializeEnemy((EnemyType)characterTypeEnum, ((EnemyType)characterTypeEnum).ToString(), 
+                data.attack, data.defense, data.HP, data.dexterity, data.attackRange);
+        }
+        else if(pawnType == PawnType.Monster)
+        {
+            Monster monster = (Monster)pawn;
+            CharacterData data = GetCharacterData(pawnType, ((MonsterType)characterTypeEnum).ToString(), level);
+            monster.InitializeMonster((MonsterType)characterTypeEnum, ((MonsterType)characterTypeEnum).ToString(),
+                data.attack, data.defense, data.HP, data.dexterity, data.attackRange);
+        }
+        return true;
     }
 
 }

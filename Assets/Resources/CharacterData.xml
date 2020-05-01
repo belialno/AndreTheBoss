@@ -8,9 +8,9 @@
 					<defense>
 						4
 					</defense>
-					<life>
+					<hp>
 						20
-					</life>
+					</hp>
 					<dexterity>
 						3
 					</dexterity>
@@ -28,9 +28,9 @@
 				<defense>
 					3
 				</defense>
-				<life>
+				<hp>
 					15
-				</life>
+				</hp>
 				<dexterity>
 					2
 				</dexterity>
@@ -40,7 +40,7 @@
 			</level>
 		</zombie>
 		
-		<elf>
+		<sprite>
 			<level value="1">
 				<attack>
 					4
@@ -48,9 +48,9 @@
 				<defense>
 					2
 				</defense>
-				<life>
+				<hp>
 					12
-				</life>
+				</hp>
 				<dexterity>
 					4
 				</dexterity>
@@ -58,7 +58,7 @@
 					2
 				</attackRange>
 			</level>
-		</elf>
+		</sprite>
 	</monsters>
 
 	<enemies>
@@ -70,9 +70,9 @@
 				<defense>
 					3
 				</defense>
-				<life>
+				<hp>
 					12
-				</life>
+				</hp>
 				<dexterity>
 					2
 				</dexterity>
@@ -89,9 +89,9 @@
 				<defense>
 					2
 				</defense>
-				<life>
+				<hp>
 					10
-				</life>
+				</hp>
 				<dexterity>
 					3
 				</dexterity>
@@ -108,9 +108,9 @@
 				<defense>
 					2
 				</defense>
-				<life>
+				<hp>
 					10
-				</life>
+				</hp>
 				<dexterity>
 					4
 				</dexterity>

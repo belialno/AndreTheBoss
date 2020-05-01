@@ -2,7 +2,7 @@
 {
     boss,
     zombie,
-    elf,
+    sprite,
 	dwarf,
 	giant,
 }

@@ -9,7 +9,6 @@ public class PawnAction : MonoBehaviour
     private Pawn selectedPawn;
     public GameInteraction gameInteraction;
     public HexMap hexMap;
-    public Text txt_pawn;
 
     public float moveSpeed =1f;
 
@@ -32,7 +31,6 @@ public class PawnAction : MonoBehaviour
     public void SetPawn(Pawn pawn)
     {
         selectedPawn = pawn;
-        SetName();
     }
     public void PrepareAttack()
     {
@@ -125,7 +123,7 @@ public class PawnAction : MonoBehaviour
             selectedPawn.transform.position = Vector3.Lerp(selectedPawn.transform.position, 
                 routes[currentTarget].transform.position, Time.deltaTime * moveSpeed);
             float distance = Vector3.Distance(selectedPawn.transform.position, routes[currentTarget].transform.position);
-            if(distance < 0.01f)
+            if(distance < 0.1f)
             {
                 hexMap.RevealCellsFrom(routes[currentTarget]);
                 if (currentTarget < routes.Count - 1)
@@ -192,11 +190,6 @@ public class PawnAction : MonoBehaviour
                 validAttackTarget = false;
             }
         }
-    }
-
-    private void SetName()
-    {
-        txt_pawn.text = selectedPawn.Name;
     }
 
     private void ClearStatus()

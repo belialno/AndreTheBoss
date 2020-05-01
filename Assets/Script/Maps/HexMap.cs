@@ -6,8 +6,10 @@ public class HexMap : MonoBehaviour
 {
 
     //public Material plainMat;
-	private Texture[] plainTex;
-	private List<Material> plainMat=new List<Material>();
+	//private Texture2D[] plainTex;
+    private const string texturePath = "Environment/GroundTex";
+
+    private List<Material> plainMat=new List<Material>();
 	public Material myMat;
 
     public int mapWidth = 40;
@@ -157,11 +159,12 @@ public class HexMap : MonoBehaviour
 	
 	public void CreateMat()
 	{
-		plainTex=Resources.LoadAll<Texture>("Environment/GroundTex");
-		for(int i=0;i<plainTex.Length;i++)
+		Object[] go = Resources.LoadAll(texturePath, typeof(Texture2D));
+		for(int i=0;i<go.Length;i++)
 		{
 			Material mat=new Material(Shader.Find("Custom/HexCell"));
-			mat.SetTexture("_MainTex",plainTex[i]);
+            //plainTex[i] = (Texture2D)go[i];
+			mat.SetTexture("_MainTex", (Texture2D)go[i]);
 			plainMat.Add(mat);
 		}
 	}
@@ -191,23 +194,20 @@ public class HexMap : MonoBehaviour
         
         if (type != HexType.Plain)
         {
-			HexTypeInfo gm =new HexTypeInfo();
-			switch(type)
-			{
-				case HexType.Forest:
-					gm = Instantiate(hexPrefab_forest);
-					break;
-				case HexType.Swamp:
-					gm = Instantiate(hexPrefab_swamp);
-					break;
-				case HexType.Mountain:
-					gm = Instantiate(hexPrefab_mountain);
-					break;
-				
-			}
-            gm.ChangeType(type);
-            gm.gameObject.transform.SetParent(cell.transform);
-            gm.gameObject.transform.localPosition = Vector3.zero;
+            HexTypeInfo gm = null;
+            if(type == HexType.Forest)
+                gm = Instantiate(hexPrefab_forest);
+            else if(type == HexType.Swamp)
+                gm = Instantiate(hexPrefab_swamp);
+            else if(type == HexType.Mountain)
+                gm = Instantiate(hexPrefab_mountain);
+
+            if(gm != null)
+            {
+                gm.ChangeType(type);
+                gm.gameObject.transform.SetParent(cell.transform);
+                gm.gameObject.transform.localPosition = Vector3.zero;
+            }
         }
     }
 
@@ -266,23 +266,23 @@ public class HexMap : MonoBehaviour
         return point;
     }
 
-    private HexCell cellSelected;
+    public HexCell selectedCell;
 
     public void SelectHex(Vector3 point)
     {
         UnselectHex();
         HexCoordinate hexCoord = HexCoordinate.FromPosition(transform.InverseTransformPoint(point));
         int index = hexCoord.X + hexCoord.Z * mapWidth + hexCoord.Z / 2;
-        cellSelected = cells[index];
-        cellSelected.indicator.gameObject.SetActive(true);
-        cellSelected.indicator.SetColor(Indicator.StartColor);
+        selectedCell = cells[index];
+        selectedCell.indicator.gameObject.SetActive(true);
+        selectedCell.indicator.SetColor(Indicator.StartColor);
     }
 
     public void UnselectHex()
     {
-        if(cellSelected != null)
+        if(selectedCell != null)
         {
-            cellSelected.indicator.gameObject.SetActive(false);
+            selectedCell.indicator.gameObject.SetActive(false);
         }
     }
 
@@ -526,6 +526,7 @@ public class HexMap : MonoBehaviour
     {
         for (int i = 0; i < cells.Length; i++)
             cells[i].indicator.gameObject.SetActive(false);
+        UnselectHex();
     }
 
     public HexCell GetCellFromPosition(Vector3 point)
@@ -548,6 +549,22 @@ public class HexMap : MonoBehaviour
             cell = cells[ranX + ranY * mapWidth];
         }
             return cell;
+    }
+
+    public bool SetCharacterCell(Pawn pawn, HexCell cell)
+    {
+        if (pawn == null || cell == null || !cell.CanbeDestination())
+            return false;
+
+        HexCell oldCell = pawn.currentCell;
+        if (oldCell != null)
+            oldCell.pawn = null;
+        pawn.currentCell = cell;
+        cell.pawn = pawn;
+
+        pawn.transform.position = cell.transform.position;
+
+        return true;
     }
 
 }

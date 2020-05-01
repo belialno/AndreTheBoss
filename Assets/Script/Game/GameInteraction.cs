@@ -9,22 +9,29 @@ public class GameInteraction : MonoBehaviour
     public HexMap hexMap;
     public GameCamera gameCamera;
     public Canvas canvas;
+    public GameManager gameManager;
 
     private Pawn selectedPawn;
-    private HexCell currentCell;
+    private HexCell selectedCell;
     public PawnAction pawnActionPanel;
     public PawnStatus pawnStatusPanel;
 
+    public HexCellAction hexCellActionPanel;
+    public MonsterPallete monsterPalletePanel;
+    public FacilityPallete facilityPalletePanel;
+
     public bool IsPawnAction = false;
+    
 
     public void OnEnable()
     {
         DisableAllPanels();
+        gameManager = GameObject.FindObjectOfType<GameManager>().GetComponent<GameManager>();
     }
 
     public void Update()
     {
-        if (IsPawnAction)
+        if (IsPawnAction || !gameManager.gameTurnManager.IsPlayerTurn())
             return;
         if(Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
@@ -47,15 +54,26 @@ public class GameInteraction : MonoBehaviour
             if (hit.collider.GetComponent<HexCell>() != null)
             {
                 hexMap.SelectHex(hit.point);
+                HexCell hitCell = hexMap.GetCellFromPosition(hit.point);
+                if(hitCell.CanbeCellConstructTarget())
+                {
+                    EnableHexCellActionPanelAt(hitCell);
+                }
             }
             else if ((selectedPawn = hit.collider.GetComponent<Pawn>()) != null)
             {
-                currentCell = hexMap.GetCellFromPosition(hit.point);
-                selectedPawn.currentCell = currentCell;
-                pawnActionPanel.SetPawn(selectedPawn);
-                pawnStatusPanel.UpdatePawnStatusPanel(selectedPawn);
-                EnableAllPawnPanels();
-                hexMap.UnselectHex();
+                if(selectedPawn.Type == PawnType.Enemy)
+                {
+                    pawnStatusPanel.UpdatePawnStatusPanel(selectedPawn);
+                    EnablePawnStatusPanel();
+                }
+                else if(selectedPawn.Type == PawnType.Monster)
+                {
+                    pawnActionPanel.SetPawn(selectedPawn);
+                    pawnStatusPanel.UpdatePawnStatusPanel(selectedPawn);
+                    EnableAllPawnPanels();
+                    hexMap.UnselectHex();
+                }
             }
         }
         else
@@ -64,16 +82,37 @@ public class GameInteraction : MonoBehaviour
         }
     }
 
-    private void EnableAllPawnPanels()
+    private void EnablePawnStatusPanel()
+    {
+        pawnStatusPanel.gameObject.SetActive(true);
+    }
+
+        private void EnableAllPawnPanels()
     {
         pawnActionPanel.gameObject.SetActive(true);
         pawnStatusPanel.gameObject.SetActive(true);
+    }
+
+    private void EnableHexCellActionPanelAt(HexCell cell)
+    {
+        hexCellActionPanel.gameObject.SetActive(true);
+        //hexCellActionPanel.transform.position = Camera.main.WorldToScreenPoint(cell.transform.position);
     }
 
     private void DisableAllPanels()
     {
         pawnActionPanel.gameObject.SetActive(false);
         pawnStatusPanel.gameObject.SetActive(false);
+        hexCellActionPanel.gameObject.SetActive(false);
+        monsterPalletePanel.gameObject.SetActive(false);
+        facilityPalletePanel.gameObject.SetActive(false);
+        
+    }
+
+    private void DisableAllPalletePanels()
+    {
+        monsterPalletePanel.gameObject.SetActive(false);
+        facilityPalletePanel.gameObject.SetActive(false);
     }
 
     private void DisableIndicators()
@@ -94,10 +133,27 @@ public class GameInteraction : MonoBehaviour
         }
     }
 
+    public void Clear()
+    {
+        ClearScreen();
+    }
+
     private void ClearScreen()
     {
         DisableIndicators();
         DisableAllPanels();
+    }
+
+    public void OpenMonsterPallete()
+    {
+        DisableAllPalletePanels();
+        monsterPalletePanel.gameObject.SetActive(true);
+    }
+
+    public void OpenFacilityPallete()
+    {
+        DisableAllPalletePanels();
+        facilityPalletePanel.gameObject.SetActive(true);
     }
 
 }

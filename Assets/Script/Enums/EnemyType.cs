@@ -3,4 +3,5 @@
     wanderingSwordman,
     magicApprentice,
     thief,
+    NUM
 }

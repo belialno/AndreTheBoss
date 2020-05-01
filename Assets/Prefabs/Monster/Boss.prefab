@@ -91,7 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7715916309972373945}
   - component: {fileID: 7447059206129835805}
-  - component: {fileID: -5824341193281891717}
+  - component: {fileID: -8441748889432098899}
   m_Layer: 8
   m_Name: Boss
   m_TagString: Untagged
@@ -128,7 +128,7 @@ CapsuleCollider:
   m_Height: 3.3
   m_Direction: 1
   m_Center: {x: 0, y: 1.25, z: 0}
---- !u!114 &-5824341193281891717
+--- !u!114 &-8441748889432098899
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -137,7 +137,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8737018112692964093}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaffa5a1ad1ba0a4aa0a08f9f681978b, type: 3}
+  m_Script: {fileID: 11500000, guid: 6e3a8b82aefa1ff4199088ed44f36acd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   currentCell: {fileID: 0}

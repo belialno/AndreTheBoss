@@ -11,7 +11,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{DE478EE8-4537-7E3D-3AAB-C94333857585}</ProjectGuid>
+    <ProjectGuid>{34774A12-7300-26CB-A5E2-DCA6BA942B48}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -58,6 +58,11 @@
      <Compile Include="Assets\Script\Enums\BuilingType.cs" />
      <Compile Include="Assets\Script\Enums\EnemyType.cs" />
      <Compile Include="Assets\Script\Enums\HexType.cs" />
+     <Compile Include="Assets\Script\Enums\ItemBuffType.cs" />
+     <Compile Include="Assets\Script\Enums\ItemFarmType.cs" />
+     <Compile Include="Assets\Script\Enums\ItemMineType.cs" />
+     <Compile Include="Assets\Script\Enums\ItemSoulType.cs" />
+     <Compile Include="Assets\Script\Enums\ItemType.cs" />
      <Compile Include="Assets\Script\Enums\MonsterType.cs" />
      <Compile Include="Assets\Script\Enums\ObstacleType.cs" />
      <Compile Include="Assets\Script\Enums\PawnType.cs" />
@@ -65,52 +70,63 @@
      <Compile Include="Assets\Script\Environment\Indicator.cs" />
      <Compile Include="Assets\Script\Environment\Obstacle.cs" />
      <Compile Include="Assets\Script\Game\CharacterReader.cs" />
+     <Compile Include="Assets\Script\Game\EnemyManager.cs" />
+     <Compile Include="Assets\Script\Game\EventManager.cs" />
      <Compile Include="Assets\Script\Game\GameCamera.cs" />
+     <Compile Include="Assets\Script\Game\GameEvent.cs" />
      <Compile Include="Assets\Script\Game\GameInteraction.cs" />
      <Compile Include="Assets\Script\Game\GameManager.cs" />
-     <Compile Include="Assets\Script\HexCell.cs" />
-     <Compile Include="Assets\Script\HexCoordinate.cs" />
-     <Compile Include="Assets\Script\HexDirection.cs" />
-     <Compile Include="Assets\Script\HexMap.cs" />
-     <Compile Include="Assets\Script\HexMesh.cs" />
-     <Compile Include="Assets\Script\HexMetrics.cs" />
-     <Compile Include="Assets\Script\MeshGrid.cs" />
+     <Compile Include="Assets\Script\Game\GameTurnManager.cs" />
+     <Compile Include="Assets\Script\Game\MonsterManager.cs" />
+     <Compile Include="Assets\Script\Maps\HexCell.cs" />
+     <Compile Include="Assets\Script\Maps\HexCoordinate.cs" />
+     <Compile Include="Assets\Script\Maps\HexDirection.cs" />
+     <Compile Include="Assets\Script\Maps\HexMap.cs" />
+     <Compile Include="Assets\Script\Maps\HexMesh.cs" />
+     <Compile Include="Assets\Script\Maps\HexMetrics.cs" />
+     <Compile Include="Assets\Script\Maps\MeshGrid.cs" />
+     <Compile Include="Assets\Script\Pawn\AIBehaviour\EnemyBehaviour.cs" />
      <Compile Include="Assets\Script\Pawn\Boss.cs" />
      <Compile Include="Assets\Script\Pawn\Enemy.cs" />
      <Compile Include="Assets\Script\Pawn\Monster.cs" />
      <Compile Include="Assets\Script\Pawn\Pawn.cs" />
      <Compile Include="Assets\UI\MainMenu\MainMenu.cs" />
+     <Compile Include="Assets\UI\Options_Pause\OptionsPause.cs" />
      <Compile Include="Assets\UI\PawnAction\PawnAction.cs" />
      <Compile Include="Assets\UI\PawnStatus\PawnStatus.cs" />
-     <None Include="Assets\Shader\HexCell.shader" />
+     <Compile Include="Assets\UI\PlayerAction\FacilityPallete.cs" />
+     <Compile Include="Assets\UI\PlayerAction\HexCellAction.cs" />
+     <Compile Include="Assets\UI\PlayerAction\MonsterPallete.cs" />
+     <Compile Include="Assets\UI\PlayerAction\MonsterSpawnButton.cs" />
+     <None Include="Assets\Resources\Shader\HexCell.shader" />
      <None Include="Assets\Resources\CharacterData.xml" />
-     <None Include="Assets\Shader\Highlight.shader" />
+     <None Include="Assets\Resources\Shader\Highlight.shader" />
  <Reference Include="Unity.Timeline.Editor">
- <HintPath>D:/Users/ifsob/Desktop/AtB/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VSCode.Editor">
- <HintPath>D:/Users/ifsob/Desktop/AtB/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+ <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>D:/Users/ifsob/Desktop/AtB/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>D:/Users/ifsob/Desktop/AtB/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline">
- <HintPath>D:/Users/ifsob/Desktop/AtB/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+ <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
  <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>D:/Users/ifsob/Desktop/AtB/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+ <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Rider.Editor">
- <HintPath>D:/Users/ifsob/Desktop/AtB/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+ <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>D:/Users/ifsob/Desktop/AtB/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>D:/Users/ifsob/Desktop/AtB/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>D:/Users/ifsob/Desktop/AndreTheBoss/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>D:/Program Files/UnityEditor/2019.3.4f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

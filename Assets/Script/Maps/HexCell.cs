@@ -108,6 +108,13 @@ public class HexCell : MonoBehaviour
         return (hexType != HexType.Mountain && obstacle == null && pawn == null);
     }
 
+    public bool CanbeCellConstructTarget()
+    {
+        // stub
+        // Todo: add requirments for utilizing a cell
+        return CanbeDestination() && hexType == HexType.Plain;
+    }
+
     public bool CanbeAttackTargetOf(HexCell fromCell)
     {
         return (pawn != null && fromCell.pawn.Type != pawn.Type);

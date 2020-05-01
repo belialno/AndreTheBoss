@@ -7,5 +7,5 @@
     DragonNest,
     KingdomRuins,
     Dungeon,
-    None,
+    None
 }
