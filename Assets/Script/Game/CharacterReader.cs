@@ -37,7 +37,7 @@ public class CharacterReader
             xpath = "/characters/monsters/" + xpath;
         
         XmlElement node = (XmlElement)xmlDoc.SelectSingleNode(xpath).ChildNodes[level-1];
-
+        
         if(node == null)
         {
             Debug.Log("On CharacterReader: " + characterName + " not found");

@@ -4,9 +4,9 @@ using System.Collections;
 public class EventManager : MonoBehaviour
 {
 	
-	public GameEvent GenerateRandomEvent()
+	public void GenerateRandomEvent()
 	{
-		return new GameEvent();
+		
 	}
 }
 
